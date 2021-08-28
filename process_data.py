@@ -14,5 +14,4 @@ print(messages.head(4))
 categories = pd.read_csv('categories.csv')
 print(categories.head(4))
 
-print(messages.columns)
-print(categories.columns)
+df=pd.merge(left, right)
