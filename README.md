@@ -59,10 +59,10 @@ The files structure:
 
 
 # Run The App Instruction
-1-Make sure that you added port number 3001 in your firewall.
-2-Run process_data.py .
-3-Run train_classifier.py .
-4-Open your CMD on App directory.
-5-Set Flask_App varible to Run.py,{Set Flask_App=Run.py}.
-6-Use flask run command,{flask run}.
-7-Go to http://0.0.0.0:3001/ using web browser.
+- 1-Make sure that you added port number 3001 in your firewall.
+- 2-Run process_data.py .
+- 3-Run train_classifier.py .
+- 4-Open your CMD on App directory.
+- 5-Set Flask_App varible to Run.py,{Set Flask_App=Run.py}.
+- 6-Use flask run command,{flask run}.
+- 7-Go to http://0.0.0.0:3001/ using web browser.
