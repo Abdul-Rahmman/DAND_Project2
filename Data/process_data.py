@@ -42,7 +42,7 @@ def transform(messages_filepath, categories_filepath):
     
        # convert column from string to numeric
         categories[column] = categories[column].astype(int)
-    
+    categories.replace(2, 1, inplace=True)
        # drop the original categories column from `df`
     del df['categories']
 
