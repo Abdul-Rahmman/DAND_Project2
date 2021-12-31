@@ -57,7 +57,7 @@ def clean(df):
     return df
 
 def save_data(df,db_name):
-    engine = create_engine('sqlite:///'+db_name')
+    engine = create_engine('sqlite:///'+db_name)
     df.to_sql('Disater_Response', engine, index=False)
     
     
