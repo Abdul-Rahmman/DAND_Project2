@@ -7,7 +7,7 @@ Created on Fri Dec 24 20:08:15 2021
 
 # import libraries
 import pandas as pd
-
+import sys
 import nltk
 nltk.download(['wordnet', 'punkt', 'stopwords'])
 from sqlalchemy import create_engine
