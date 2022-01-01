@@ -1,5 +1,6 @@
 # DAND_Project2
-This Project is part of Udacity course submitions. Udacity DataScience Nanodegree Project 2 - Disaster Response System.
+This Project is part of Udacity course submitions. Udacity DataScience Nanodegree Project 2 - Disaster Response System,
+The project aim is to build a  (NLP) Natural Language Processing model to categorize messages on a real time basis.
 
 
 # Project Motivation
