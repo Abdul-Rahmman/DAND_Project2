@@ -12,6 +12,19 @@ import sqlite3
 from sqlalchemy import create_engine
 
 def transform(messages_filepath, categories_filepath):
+    """
+       Function:
+       Split and Merge Data Frames
+       
+       Args:
+       messages_filepath: Messages Dataframe
+       categories_filepath: Categories Dataframe
+       
+       Return:
+       df: Merged Data Frame.
+       
+       
+       """
     # load messages dataset
     messages = pd.read_csv(messages_filepath)
 
