@@ -43,14 +43,19 @@ def tokenize(text):
     lemm = [WordNetLemmatizer().lemmatize(w) for w in words]
     return lemm
 
-
 def buildmodel():
+    """
+     Function: build a model for classifing the disaster messages
+     Return:
+       cv(list of str): classification model
+     """
+    # Create a Pipeline
     pipeline_rfc = Pipeline([
         ('vect', CountVectorizer(tokenizer = tokenize)),
         ('tfidf', TfidfTransformer()),
         ('clf',  MultiOutputClassifier(RandomForestClassifier(n_estimators=100)))
     ])
-
+    # Create Grid Search Parameters
     parameters =  {'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
         'features__text_pipeline__vect__max_df': (0.5, 0.75, 1.0),
         'features__text_pipeline__vect__max_features': (None, 5000, 10000),
@@ -68,12 +73,25 @@ def buildmodel():
 
 
 def evaluate_model(model, X_test, Y_test):
+    """
+    Function: Evaluate the model and print the f1 score, precision and recall for each output category of the dataset.
+    Args:
+    model: the classification model
+    X_test: test messages
+    Y_test: test target
+    """
     y_pred = model.predict(X_test)
     class_report = classification_report(Y_test, y_pred)
     print(class_report)  
     
 
 def save_model(model,model_path):
+    """
+    Function: Export Model to Pickle File
+    Args:
+    model: the classification model
+    model_path (str): the path of pickle file
+    """
     with open(model_path, 'wb') as file:
         pickle.dump(model, file)
 
