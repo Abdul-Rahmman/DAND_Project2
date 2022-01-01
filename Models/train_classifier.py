@@ -26,8 +26,19 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.model_selection import train_test_split,  GridSearchCV 
 from sklearn.metrics import classification_report
 
-# load data from database
+# 
 def load_data(db_path):
+     """
+     Function: 
+     load data from database
+     
+     Args:
+     db_path:DataBase Path
+     
+     Return:
+       X: Messages Data Frame
+       Y: Targeted Data Frame
+     """
     engine = create_engine('sqlite:///'+db_path)
     df = pd.read_sql_table('Disater_Response',engine)
     X = df['message']
@@ -35,7 +46,18 @@ def load_data(db_path):
     category_names = Y.columns
     return X,Y
 
+
 def tokenize(text):
+    """
+     Function: 
+     Clean and Split Text into Root Words
+     
+     Args:
+     text: Message Text
+     
+     Return:
+     lemm: List of Cleaned Root Words
+     """
     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
     words = word_tokenize(text)
     stop = stopwords.words("english")
@@ -45,7 +67,9 @@ def tokenize(text):
 
 def buildmodel():
     """
-     Function: build a model for classifing the disaster messages
+     Function:
+     build a model for classifing the disaster messages
+     
      Return:
        cv(list of str): classification model
      """
@@ -87,7 +111,9 @@ def evaluate_model(model, X_test, Y_test):
 
 def save_model(model,model_path):
     """
-    Function: Export Model to Pickle File
+    Function:
+    Export Model to Pickle File
+    
     Args:
     model: the classification model
     model_path (str): the path of pickle file
