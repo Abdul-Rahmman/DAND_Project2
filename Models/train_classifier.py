@@ -44,15 +44,13 @@ def tokenize(text):
     return lemm
 
 
-def model():
+def buildmodel():
     pipeline_rfc = Pipeline([
         ('vect', CountVectorizer(tokenizer = tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf',  MultiOutputClassifier(RandomForestClassifier()))
+        ('clf',  MultiOutputClassifier(RandomForestClassifier(n_estimators=100)))
     ])
-    X_train, X_test, y_train, y_test = train_test_split(X, Y)
-    pipeline_rfc.fit(X_train, y_train)
-    pipeline_rfc.get_params()
+
     parameters =  {'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
         'features__text_pipeline__vect__max_df': (0.5, 0.75, 1.0),
         'features__text_pipeline__vect__max_features': (None, 5000, 10000),
@@ -65,17 +63,17 @@ def model():
             {'text_pipeline': 0.8, 'starting_verb': 1},
         )
               }
-    cv = GridSearchCV(pipeline, param_grid=parameters)
+    cv = GridSearchCV(pipeline_rfc, param_grid=parameters)
     return cv
 
 
 def evaluate_model(model, X_test, Y_test):
-    y_pred = cv.predict(X_test)
+    y_pred = model.predict(X_test)
     class_report = classification_report(Y_test, y_pred)
     print(class_report)  
     
 
-def save(model,model_path):
+def save_model(model,model_path):
     with open(model_path, 'wb') as file:
         pickle.dump(model, file)
 
@@ -89,7 +87,7 @@ def main():
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
         
         print('Modeling On Process:')
-        model = model()
+        model = buildmodel()
         
         print('Training On Process:')
         model.fit(X_train, Y_train)
