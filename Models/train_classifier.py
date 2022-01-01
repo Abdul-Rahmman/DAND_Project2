@@ -28,7 +28,7 @@ from sklearn.metrics import classification_report
 
 # load data from database
 def load_data(db_path):
-    engine = create_engine('sqlite:///'+db_bath)
+    engine = create_engine('sqlite:///'+db_path)
     df = pd.read_sql_table('Disater_Response',engine)
     X = df['message']
     Y = df.iloc[:, 4:]
