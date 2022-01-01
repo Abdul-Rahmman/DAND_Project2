@@ -61,7 +61,7 @@ The files structure:
 # Run The App Instruction
 - 1-Make sure that you added port number 3001 in your firewall.
 - 2-Run following comand to process data ETL,{`python Data/process_data.py Data/messages.csv Data/categories.csv Data/DisasterResponse.db`} .
-- 3-Run train_classifier.py,{ `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`} .
+- 3-Run train_classifier.py,{ `python Models/train_classifier.py Data/DisasterResponse.db Models/classifier.pkl`} .
 - 4-Open your CMD on App directory.
 - 5-Set Flask_App varible to Run.py,{Set Flask_App=Run.py}.
 - 6-Use flask run command,{flask run}.
