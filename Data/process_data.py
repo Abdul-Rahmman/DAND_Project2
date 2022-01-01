@@ -73,7 +73,7 @@ def main():
         df = transform(messages_filepath, categories_filepath)
 
         print('Cleaning data...')
-        df = clean_data(df)
+        df = clean(df)
         
         print('Saving data...\n    DATABASE: {}'.format(database_filepath))
         save_data(df, database_filepath)
